@@ -29,29 +29,30 @@ let s:winhl ='LineNr:leftmarginLineNr,
 	"\...,Folded:leftmarginFolded' 
 
 " options {{{1
-                                                      " hiding statusline:
-let s:values = '[1,     s:nuw,  s:fdc,  s:winhl]'     " let s:values = '[..., 0]'
-let s:opts   = '[&l:nu, &l:nuw, &l:fdc, &l:winhl]'    " let s:opts   = '[..., &g:laststatus]'
-let s:backup =  [&nu,   &nuw,   &fdc,   &winhl]       " let s:backup =  [..., &laststatus]
+                                                   " hiding statusline:
+let s:values = '[1,   s:nuw, s:fdc, s:winhl]'  "  = '[..., 0]'
+let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'   "  = '[..., &laststatus]'
+let s:backup =  [&nu, &nuw,  &fdc,  &winhl]    "  =  [..., &laststatus]
 
 functio s:Width()
 	let l:width = (&columns - max([&textwidth, 80]) + 1) / 2
-	let s:nuw = min([20, l:width])
+	let s:nuw = min([20, l:width])                 " prefer to use numberwidth than foldcolumn
 	let s:fdc = min([l:width - s:nuw, 12])
 endfunction
 
 " on/off/toggle {{{1
+map <unique> <leader>p <Cmd>call <SID>Toggle()<CR>
+
 command LeftMargin   call s:Enable()
 command NoMargin     call s:Disable()
-command ToggleMargin call s:Toggle()
 
 " adjust margin when textwidth changes
 augroup leftmarginWidth
-	autocmd OptionSet textwidth if get(b:, 'margin_enabled') | LeftMargin
+	autocmd OptionSet textwidth if get(w:, 'margin_enabled') | LeftMargin
 augroup END
 
 function s:Enable()
-	let b:margin_enabled = 1
+	let w:margin_enabled = 1
 	call s:Hi()
 	call s:Width()
 	if &buftype != '' && !exists('w:marginal_backup')    " help buffers and others
@@ -61,7 +62,7 @@ function s:Enable()
 endfunction
 
 function s:Disable()
-	let b:margin_enabled = 0
+	let w:margin_enabled = 0
 	if &bt == '' || !exists('w:marginal_backup')
 		exec 'let '.s:opts.' = s:backup'
 	else
@@ -70,7 +71,7 @@ function s:Disable()
 endfunction
 
 function s:Toggle()
-	if get(b:, "margin_enabled")
+	if get(w:, "margin_enabled")
 		NoMargin
 	else
 		LeftMargin
