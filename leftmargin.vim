@@ -11,22 +11,22 @@ endif
 let g:loaded_leftmargin = 1
 
 " highlight groups {{{1
-augroup marginalColors
+augroup leftmarginColors
 	autocmd ColorScheme * call s:Hi()
 	autocmd OptionSet background,termguicolors call s:Hi()
 augroup END
 
 function s:Hi()
-	hi MarginLineNr    ctermfg=bg  guifg=bg
-	hi MarginCursorNr  ctermfg=bg  guifg=bg
-	hi MarginFoldCol   ctermfg=bg  guifg=bg
-	" hi MarginFolded    ctermfg=245   guifg=#928374
+	hi leftmarginLineNr     ctermfg=bg  guifg=bg
+	hi leftmarginCursorNr   ctermfg=bg  guifg=bg
+	hi leftmarginFoldColumn ctermfg=bg  guifg=bg
+	" hi leftmarginFolded    ctermfg=245 guifg=#928374
 endfunction
 
-let s:winhl ='LineNr:MarginLineNr,
-	\FoldColumn:MarginFoldCol,
-	\CursorLineNr:MarginCursorNr'
-	"\...,Folded:MarginFolded' 
+let s:winhl ='LineNr:leftmarginLineNr,
+	\FoldColumn:leftmarginFoldColumn,
+	\CursorLineNr:leftmarginCursorNr'
+	"\...,Folded:leftmarginFolded' 
 
 " options {{{1
                                                       " hiding statusline:
@@ -46,7 +46,7 @@ command NoMargin     call s:Disable()
 command ToggleMargin call s:Toggle()
 
 " adjust margin when textwidth changes
-augroup AdjustMargin
+augroup leftmarginWidth
 	autocmd OptionSet textwidth if get(b:, 'margin_enabled') | LeftMargin
 augroup END
 
