@@ -1,15 +1,14 @@
 " leftmargin.vim - https://github.com/jpaulogg/vim-leftmargin.git>
 
-" Author:  João Paulo G. Garcia
 " Licence: public domain
-" Last Change: 2021/01/13  
+" Last Change: 2021/01/17
 
 " Add left margin for easy reading and writing prose
 
-if exists('g:loaded_marginal')
+if exists('g:loaded_leftmargin')
 	finish
 endif
-let g:loaded_marginal = 1
+let g:loaded_leftmargin = 1
 
 " highlight groups {{{1
 augroup marginalColors
@@ -44,9 +43,9 @@ functio s:Width()
 endfunction
 
 " on/off/toggle {{{1
-command! LeftMargin   call s:Enable()
-command! NoMargin     call s:Disable()
-command! ToggleMargin call s:Toggle()
+command LeftMargin   call s:Enable()
+command NoMargin     call s:Disable()
+command ToggleMargin call s:Toggle()
 
 function s:Enable()
 	let b:margin_enabled = 1
