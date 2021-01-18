@@ -36,10 +36,7 @@ let s:opts   = '[&l:nu, &l:nuw, &l:fdc, &l:winhl]'    " let s:opts   = '[..., &g
 let s:backup =  [&nu,   &nuw,   &fdc,   &winhl]       " let s:backup =  [..., &laststatus]
 
 functio s:Width()
-	let l:width = (&columns - &textwidth) / 2
-	if &textwidth == 0
-		let l:width += 80
-	endif
+	let l:width = (&columns - max([&textwidth, 80]) + 1) / 2
 	if l:width < 32
 		let s:nuw = l:width - 12
 	else
