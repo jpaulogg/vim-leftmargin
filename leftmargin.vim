@@ -1,9 +1,9 @@
 " leftmargin.vim - https://github.com/jpaulogg/vim-leftmargin.git>
 
 " Licence: public domain
-" Last Change: 2021/01/17
+" Last Change: 2021/01/18
 
-" Adds left margin for easy reading and writing prose
+" Adds left margin for easier reading and writing prose
 
 if exists('g:loaded_leftmargin')
 	finish
@@ -30,17 +30,14 @@ let s:winhl ='LineNr:MarginLineNr,
 
 " options {{{1
                                                       " hiding statusline:
-let s:values = '[1,     s:nuw,  12,     s:winhl]'     " let s:values = '[..., 0]'
+let s:values = '[1,     s:nuw,  s:fdc,  s:winhl]'     " let s:values = '[..., 0]'
 let s:opts   = '[&l:nu, &l:nuw, &l:fdc, &l:winhl]'    " let s:opts   = '[..., &g:laststatus]'
 let s:backup =  [&nu,   &nuw,   &fdc,   &winhl]       " let s:backup =  [..., &laststatus]
 
 functio s:Width()
 	let l:width = (&columns - max([&textwidth, 80]) + 1) / 2
-	if l:width < 32
-		let s:nuw = l:width - 12
-	else
-		let s:nuw = 20
-	endif
+	let s:nuw = min([20, l:width])
+	let s:fdc = min([l:width - s:nuw, 12])
 endfunction
 
 " on/off/toggle {{{1
