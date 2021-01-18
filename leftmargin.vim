@@ -35,7 +35,7 @@ let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'     "  = '[..., &laststatus]'
 let s:backup =  [&nu, &nuw,  &fdc,  &winhl]      "  =  [..., &laststatus]
 
 functio s:Width()
-	let l:width = (&columns - max([&textwidth, 80]) + 1) / 2
+	let l:width = (&columns - max([&textwidth, 74]) + 1) / 2
 	let s:nuw = min([20, l:width])               " prefer to use numberwidth than foldcolumn
 	let s:fdc = min([l:width - s:nuw, 12])
 endfunction
