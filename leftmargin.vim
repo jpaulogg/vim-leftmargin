@@ -14,7 +14,6 @@ let g:loaded_leftmargin = 1
 augroup marginalColors
 	autocmd ColorScheme * call s:Hi()
 	autocmd OptionSet background,termguicolors call s:Hi()
-	autocmd OptionSet textwidth LeftMargin
 augroup END
 
 function s:Hi()
@@ -49,11 +48,16 @@ command LeftMargin   call s:Enable()
 command NoMargin     call s:Disable()
 command ToggleMargin call s:Toggle()
 
+" adjust margin when textwidth changes
+augroup AdjustMargin
+	autocmd OptionSet textwidth if get(b:, 'margin_enabled') | LeftMargin
+augroup END
+
 function s:Enable()
 	let b:margin_enabled = 1
 	call s:Hi()
 	call s:Width()
-	if &buftype != '' && !exists('w:marginal_backup')
+	if &buftype != '' && !exists('w:marginal_backup')    " help buffers and others
 		exec 'let '.'w:marginal_backup = '.s:opts
 	endif
 	exec 'let '.s:opts.' = '.s:values
