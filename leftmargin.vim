@@ -3,7 +3,7 @@
 " Licence: public domain
 " Last Change: 2021/01/17
 
-" Add left margin for easy reading and writing prose
+" Adds left margin for easy reading and writing prose
 
 if exists('g:loaded_leftmargin')
 	finish
@@ -30,12 +30,16 @@ let s:winhl ='LineNr:MarginLineNr,
 	"\...,Folded:MarginFolded' 
 
 " options {{{1
+                                                      " hiding statusline:
 let s:values = '[1,     s:nuw,  12,     s:winhl]'     " let s:values = '[..., 0]'
 let s:opts   = '[&l:nu, &l:nuw, &l:fdc, &l:winhl]'    " let s:opts   = '[..., &g:laststatus]'
 let s:backup =  [&nu,   &nuw,   &fdc,   &winhl]       " let s:backup =  [..., &laststatus]
 
 functio s:Width()
 	let l:width = (&columns - &textwidth) / 2
+	if &textwidth == 0
+		let l:width += 80
+	endif
 	if l:width < 32
 		let s:nuw = l:width - 12
 	else
