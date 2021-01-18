@@ -29,14 +29,14 @@ let s:winhl ='LineNr:leftmarginLineNr,
 	"\...,Folded:leftmarginFolded' 
 
 " options {{{1
-                                                   " hiding statusline:
-let s:values = '[1,   s:nuw, s:fdc, s:winhl]'  "  = '[..., 0]'
-let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'   "  = '[..., &laststatus]'
-let s:backup =  [&nu, &nuw,  &fdc,  &winhl]    "  =  [..., &laststatus]
+                                                     " hiding statusline:
+let s:values = '[1,   s:nuw, s:fdc, s:winhl]'    "  = '[..., 0]'
+let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'     "  = '[..., &laststatus]'
+let s:backup =  [&nu, &nuw,  &fdc,  &winhl]      "  =  [..., &laststatus]
 
 functio s:Width()
 	let l:width = (&columns - max([&textwidth, 80]) + 1) / 2
-	let s:nuw = min([20, l:width])                 " prefer to use numberwidth than foldcolumn
+	let s:nuw = min([20, l:width])               " prefer to use numberwidth than foldcolumn
 	let s:fdc = min([l:width - s:nuw, 12])
 endfunction
 
