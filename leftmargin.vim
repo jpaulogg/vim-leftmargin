@@ -14,7 +14,7 @@ let g:loaded_leftmargin = 1
 augroup marginalColors
 	autocmd ColorScheme * call s:Hi()
 	autocmd OptionSet background,termguicolors call s:Hi()
-	autocmd OptionSet twxtwidth LeftMargin
+	autocmd OptionSet textwidth LeftMargin
 augroup END
 
 function s:Hi()
