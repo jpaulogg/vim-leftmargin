@@ -2,7 +2,6 @@
 
 " Licence: public domain
 " Last Change: 2021/01/18
-
 " Adds left margin for easier reading and writing prose
 
 if exists('g:loaded_leftmargin')
@@ -11,11 +10,6 @@ endif
 let g:loaded_leftmargin = 1
 
 " highlight groups {{{1
-augroup leftmarginColors
-	autocmd ColorScheme * call s:Hi()
-	autocmd OptionSet background,termguicolors call s:Hi()
-augroup END
-
 function s:Hi()
 	hi leftmarginLineNr     ctermfg=bg  guifg=bg
 	hi leftmarginCursorNr   ctermfg=bg  guifg=bg
@@ -46,11 +40,6 @@ map <unique> <leader>p <Cmd>call <SID>Toggle()<CR>
 command LeftMargin   call s:Enable()
 command NoMargin     call s:Disable()
 
-" adjust margin when textwidth changes
-augroup leftmarginWidth
-	autocmd OptionSet textwidth if get(w:, 'margin_enabled') | LeftMargin
-augroup END
-
 function s:Enable()
 	let w:margin_enabled = 1
 	call s:Hi()
@@ -78,6 +67,15 @@ function s:Toggle()
 	endif
 endfunction
 
-"}}} 
+" autocmds {{{1
+augroup leftmarginColors
+	autocmd ColorScheme * call s:Hi()
+	autocmd OptionSet background,termguicolors call s:Hi()
+augroup END
 
+augroup leftmarginWidth
+	autocmd OptionSet textwidth if get(w:, 'margin_enabled') | LeftMargin
+augroup END
+
+"}}} 
 " vim: set fdm=marker :
