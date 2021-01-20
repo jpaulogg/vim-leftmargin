@@ -30,7 +30,6 @@ augroup END
 " enable, disable and toggle {{{1
 function s:Enable()
 	let w:margin_enabled = 1
-	call s:Hi()
 	call s:Width()
 	if &buftype != '' && !exists('w:marginal_backup')    " help buffers and others
 		exec 'let '.'w:marginal_backup = '.s:opts
@@ -75,6 +74,7 @@ function s:Hi()
 	hi leftmarginFoldColumn ctermfg=bg  guifg=bg
 	" hi leftmarginFolded    ctermfg=245 guifg=#928374
 endfunction
+call s:Hi()
 
 let s:winhl ='LineNr:leftmarginLineNr,
 	\FoldColumn:leftmarginFoldColumn,
