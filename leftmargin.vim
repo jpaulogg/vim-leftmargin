@@ -1,9 +1,12 @@
-" leftmargin.vim - https://github.com/jpaulogg/vim-leftmargin.git>
+" vim: set noet fdm=marker:
+" 'zR' to open and 'zM' to close all folds
 
+" leftmargin.vim - https://github.com/jpaulogg/vim-leftmargin.git>
+" Adds left margin for easier reading and writing prose
+
+" Branch:  script
 " Licence: public domain
 " Last Change: 2021/01/18
-" Branch: raw
-" Adds left margin for easier reading and writing prose
 
 " load once
 if exists('g:loaded_leftmargin')
@@ -26,6 +29,32 @@ augroup END
 augroup leftmarginWidth
 	autocmd OptionSet textwidth if get(w:, 'margin_enabled') | LeftMargin
 augroup END
+
+" highlight groups {{{1
+function s:Hi()
+	hi leftmarginLineNr     ctermfg=bg  guifg=bg
+	hi leftmarginCursorNr   ctermfg=bg  guifg=bg
+	hi leftmarginFoldColumn ctermfg=bg  guifg=bg
+	" hi leftmarginFolded    ctermfg=245 guifg=#928374
+endfunction
+call s:Hi()
+
+let s:winhl ='LineNr:leftmarginLineNr,
+	\FoldColumn:leftmarginFoldColumn,
+	\CursorLineNr:leftmarginCursorNr'
+	"\...,Folded:leftmarginFolded' 
+
+" options {{{1
+                                               	" hiding statusline:
+let s:values = '[1,   s:nuw, s:fdc, s:winhl]'  	"  = '[..., 0]'
+let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'   	"  = '[..., &laststatus]'
+let s:backup =  [&nu, &nuw,  &fdc,  &winhl]    	"  =  [..., &laststatus]
+
+functio s:Width()
+	let l:width = (&columns - max([&textwidth, 74]) + 1) / 2
+	let s:nuw = min([20, l:width])         " prefer to use numberwidth than foldcolumn
+	let s:fdc = min([l:width - s:nuw, 12])
+endfunction
 
 " enable, disable and toggle {{{1
 function s:Enable()
@@ -53,33 +82,3 @@ function s:Toggle()
 		LeftMargin
 	endif
 endfunction
-
-
-" options {{{1
-                                               	" hiding statusline:
-let s:values = '[1,   s:nuw, s:fdc, s:winhl]'  	"  = '[..., 0]'
-let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'   	"  = '[..., &laststatus]'
-let s:backup =  [&nu, &nuw,  &fdc,  &winhl]    	"  =  [..., &laststatus]
-
-functio s:Width()
-	let l:width = (&columns - max([&textwidth, 74]) + 1) / 2
-	let s:nuw = min([20, l:width])         " prefer to use numberwidth than foldcolumn
-	let s:fdc = min([l:width - s:nuw, 12])
-endfunction
-
-" highlight groups {{{1
-function s:Hi()
-	hi leftmarginLineNr     ctermfg=bg  guifg=bg
-	hi leftmarginCursorNr   ctermfg=bg  guifg=bg
-	hi leftmarginFoldColumn ctermfg=bg  guifg=bg
-	" hi leftmarginFolded    ctermfg=245 guifg=#928374
-endfunction
-call s:Hi()
-
-let s:winhl ='LineNr:leftmarginLineNr,
-	\FoldColumn:leftmarginFoldColumn,
-	\CursorLineNr:leftmarginCursorNr'
-	"\...,Folded:leftmarginFolded' 
-
-"}}} 
-" vim: set fdm=marker :
