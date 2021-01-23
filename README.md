@@ -31,7 +31,7 @@ Just copy leftmargin.vim to "plugin" directory in your runtime. For example:
 mkdir -p ~/.config/nvim/plugin/
 cd ~/.config/nvim/plugin/
 git clone https://github.com/jpaulogg/vim-leftmargin
-rm -rf plugin/.git plugin/README.md
+rm -rf vim-leftmargin/.git vim-leftmargin/README.md
 ```
 
 If you prefer, install using your favorite package manager, or use (Neo)Vim's built-in package
