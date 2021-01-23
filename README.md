@@ -24,9 +24,10 @@ your `vimrc`, you should try [similar plugins](#similar-plugins).
 
 ## Installation
 
-Just copy leftmargin.vim to `plugin` directory in your runtime. For example:
+Just copy leftmargin.vim to "plugin" directory in your runtime. For example:
 
 ```
+# in vim use '~/.vim/' instead of '~/.config/nvim'
 mkdir -p ~/.config/nvim/plugin/
 cd ~/.config/nvim/plugin/
 git clone https://github.com/jpaulogg/vim-leftmargin
