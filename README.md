@@ -4,7 +4,7 @@ Vim plugin that adds left margin to terminal windows, making easier to read and 
 this script because I don't like the way the [goyo.vim](https://github.com/junegunn/goyo.vim/tree/master)
 plugin handles windows and `statusline`. Also because I like to keep things minimal.
 
-# Philosophy - should you use this plugin?
+## Philosophy - should you use this plugin?
 
 This plugin was written in an attempt to be simple enough that users could make any changes directly
 to it. I believe that this gives users more control and a wider range of possible changes. In
