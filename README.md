@@ -8,8 +8,9 @@ plugin handles windows and `statusline`. Also because I like to keep things mini
 
 This plugin was written in an attempt to be simple enough that users could make any changes directly
 to it. I believe that this gives users more control and a wider range of possible changes. In
-addition, the script has comments that help to make some customizations (for example, hide the
-`statusline`). It's almost as simple as doing it on your `vimrc`.
+addition, the script has comments that help to make some customizations (for example,
+[hide the statusline](https://github.com/jpaulogg/vim-leftmargin/blob/293f7ba4955bffc492fd4c20569a537d61b1f47b/leftmargin.vim#L48-L51)
+). It's almost as simple as doing it on your `vimrc`.
 
 If you prefere something that provides global variables and options that you can set from
 your `vimrc`, you should try [similar plugins](#similar-plugins).
@@ -24,30 +25,30 @@ your `vimrc`, you should try [similar plugins](#similar-plugins).
 
 ## Installation
 
-Just copy leftmargin.vim to "plugin" directory in your runtime. For example:
+Just copy leftmargin.vim to the "plugin" directory in your runtime. For example:
 
 ```
 # in vim use '~/.vim/' instead of '~/.config/nvim'
 mkdir -p ~/.config/nvim/plugin/
 cd ~/.config/nvim/plugin/
 git clone https://github.com/jpaulogg/vim-leftmargin
-rm -rf vim-leftmargin/.git vim-leftmargin/README.md
+rm -rf vim-leftmargin/.git* vim-leftmargin/README.md
 ```
 
 If you prefer, install using your favorite package manager, or use (Neo)Vim's built-in package
 support. Use "pack" branch in that case:
 
-```
+```vim
 # vim-plug
 Plug 'jpaulogg/vim-leftmargin', { 'branch' : 'pack' }
 :PlugInstall
+```
 
+```
 # built-in package support (in vim use '~/.vim/' instead of '~/.config/nvim')
 mkdir -p ~/.config/nvim/pack/anything/start/vim-leftmargin
 cd ~/.config/nvim/pack/anything/start/vim-leftmargin
-git clone https://github.com/jpaulogg/vim-leftmargin
-git fetch origin pack
-git checkout pack
+git clone -b pack https://github.com/jpaulogg/vim-leftmargin
 ```
 
 ## Similar plugins
