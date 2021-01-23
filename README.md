@@ -10,7 +10,7 @@ addition, the script has comments that help to make some customizations (for exa
 `statusline`). It's almost as simple as doing it on your `vimrc`.
 
 If you prefere something that provides global variables and options that you can set from
-your `vimrc`, you should try [similar plugins](##-similar-plugins).
+your `vimrc`, you should try [similar plugins](#similar-plugins).
 
 ## Commands and mappings
 
