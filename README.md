@@ -39,7 +39,7 @@ If you prefer, install using your favorite package manager, or use (Neo)Vim's bu
 support. Use "pack" branch in that case:
 
 ```vim
-# vim-plug
+" vim-plug
 Plug 'jpaulogg/vim-leftmargin', { 'branch' : 'pack' }
 :PlugInstall
 ```
