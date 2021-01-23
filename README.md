@@ -1,6 +1,8 @@
 # leftmargin.vim
 
-Vim plugin that adds left margin to terminal windows, making easier to read and write prose
+Vim plugin that adds left margin to terminal windows, making easier to read and write prose. I wrote
+this script because I don't like the way the [goyo.vim](https://github.com/junegunn/goyo.vim/tree/master)
+plugin handles windows and `statusline`. Also because I like to keep things minimal.
 
 # Philosophy - should you use this plugin?
 
@@ -39,7 +41,7 @@ support. Use `pack` branch in that case:
 Plug 'jpaulogg/vim-leftmargin', { 'branch' : 'pack' }
 :PlugInstall
 
-# built-in package support
+# built-in package support (in vim use '~/.vim/' instead of '~/.config/nvim')
 mkdir -p ~/.config/nvim/pack/anything/start/vim-leftmargin
 cd ~/.config/nvim/pack/anything/start/vim-leftmargin
 git clone https://github.com/jpaulogg/vim-leftmargin
@@ -49,16 +51,17 @@ git checkout pack
 
 ## Similar plugins
 
-[Goyo](https://github.com/junegunn/goyo.vim/tree/master/)
+- [Goyo](https://github.com/junegunn/goyo.vim/tree/master/)
 
-[vim-venter](https://github.com/JMcKiern/vim-venter)
+- [vim-venter](https://github.com/JMcKiern/vim-venter)
 
-[mutton-vim](https://github.com/gabenespoli/vim-mutton)
+- [mutton-vim](https://github.com/gabenespoli/vim-mutton)
 
 ### Main differences
 
 - local to window (you can have windows with left margin and others without it);
-- doesn't hide statusline by default (not difficult to achieve);
+- doesn't hide statusline by default (not difficult to (achieve)[#philosophy-- should-you-use-this
+  plugin?];
 - doesn't create new windows to simulate margins;
 - because of that, doesn't create a right margin;
 - left margin has a 32 column width limit (`numberwidth + foldcolumn`)
