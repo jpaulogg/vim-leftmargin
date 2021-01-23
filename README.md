@@ -60,8 +60,8 @@ git checkout pack
 ### Main differences
 
 - local to window (you can have windows with left margin and others without it);
-- doesn't hide statusline by default (not difficult to (achieve)[#philosophy-- should-you-use-this
-  plugin?];
+- doesn't hide statusline by default (not difficult to [achieve](#philosophy-- should-you-use-this
+  plugin?);
 - doesn't create new windows to simulate margins;
 - because of that, doesn't create a right margin;
 - left margin has a 32 column width limit (`numberwidth + foldcolumn`)
