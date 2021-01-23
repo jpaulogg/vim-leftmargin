@@ -35,7 +35,7 @@ rm -rf plugin/.git plugin/README.md
 ```
 
 If you prefer, install using your favorite package manager, or use (Neo)Vim's built-in package
-support. Use `pack` branch in that case:
+support. Use "pack" branch in that case:
 
 ```
 # vim-plug
