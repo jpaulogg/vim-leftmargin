@@ -1,11 +1,11 @@
 # leftmargin.vim
 
-Vim plugin that adds left margin to terminal windows, making easier to read and write prose. I wrote
+Vim plugin that adds left margin to vim windows, making easier to read and write prose. I wrote
 this script because I don't like the way the [goyo.vim](https://github.com/junegunn/goyo.vim/tree/master)
 plugin handles windows and `statusline` (check [main differences](#main-differences) section). Also because
 I like to keep things minimal.
 
-## Philosophy - should you use this plugin?
+## Should you use this plugin?
 
 This plugin was written in an attempt to be simple enough that users could make any changes directly
 to it. I believe that this gives users more control and a wider range of possible changes. In
@@ -30,26 +30,17 @@ Just copy leftmargin.vim to the "plugin" directory in your runtime. For example:
 
 ```
 # in vim use '~/.vim/' instead of '~/.config/nvim'
-mkdir -p ~/.config/nvim/plugin/
-cd ~/.config/nvim/plugin/
-git clone https://github.com/jpaulogg/vim-leftmargin
-rm -rf vim-leftmargin/.git* vim-leftmargin/README.md
+curl -fLo ~/.config/nvim/plugin/vim-leftmargin/leftmargin.vim \
+	https://raw.githubusercontent.com/jpaulogg/vim-leftmargin/master/leftmargin.vim
 ```
 
-If you prefer, install using your favorite package manager, or use (Neo)Vim's built-in package
-support. Use "pack" branch in that case:
-
-```vim
-" vim-plug
-Plug 'jpaulogg/vim-leftmargin', { 'branch' : 'pack' }
-:PlugInstall
-```
+If you prefer, use (Neo)Vim's built-in package support.
 
 ```
-# built-in package support (in vim use '~/.vim/' instead of '~/.config/nvim')
-mkdir -p ~/.config/nvim/pack/anything/start/vim-leftmargin
-cd ~/.config/nvim/pack/anything/start/vim-leftmargin
-git clone -b pack https://github.com/jpaulogg/vim-leftmargin
+# in vim use '~/.vim/' instead of '~/.config/nvim'
+curl -fLo ~/.config/nvim/pack/any/start/vim-leftmargin/plugin/leftmargin.vim \
+	--create-dirs \
+	https://raw.githubusercontent.com/jpaulogg/vim-leftmargin/master/leftmargin.vim
 ```
 
 ## Similar plugins
@@ -63,7 +54,7 @@ git clone -b pack https://github.com/jpaulogg/vim-leftmargin
 ### Main differences
 
 - local to window (you can have windows with left margin and others without it);
-- doesn't hide statusline by default (not difficult to [achieve](#philosophy---should-you-use-this-plugin));
+- doesn't hide statusline by default (not difficult to [achieve](#should-you-use-this-plugin));
 - doesn't create new windows to simulate margins;
 - because of that, doesn't create a right margin;
 - left margin has a 32 column width limit (`numberwidth + foldcolumn`)
