@@ -4,7 +4,6 @@
 " leftmargin.vim - https://github.com/jpaulogg/vim-leftmargin.git>
 " Adds left margin for easier reading and writing prose
 
-" Branch:  script
 " Licence: public domain
 " Last Change: 2021/01/18
 
@@ -22,8 +21,8 @@ command NoMargin   call s:Disable()
 
 " autocmds {{{1
 augroup leftmarginColors
-	autocmd ColorScheme * call s:Hi()
-	autocmd OptionSet background,termguicolors call s:Hi()
+	autocmd ColorScheme * call s:Highlight()
+	autocmd OptionSet background,termguicolors call s:Highlight()
 augroup END
 
 augroup leftmarginWidth
@@ -31,13 +30,13 @@ augroup leftmarginWidth
 augroup END
 
 " highlight groups {{{1
-function s:Hi()
+function s:Highlight()
 	hi leftmarginLineNr     ctermfg=bg  guifg=bg
 	hi leftmarginCursorNr   ctermfg=bg  guifg=bg
 	hi leftmarginFoldColumn ctermfg=bg  guifg=bg
 	" hi leftmarginFolded    ctermfg=245 guifg=#928374
 endfunction
-call s:Hi()
+call s:Highlight()
 
 let s:winhl ='LineNr:leftmarginLineNr,
 	\FoldColumn:leftmarginFoldColumn,
@@ -51,8 +50,8 @@ let s:opts   = '[&nu, &nuw,  &fdc,  &winhl]'   	"  = '[..., &laststatus]'
 let s:backup =  [&nu, &nuw,  &fdc,  &winhl]    	"  =  [..., &laststatus]
 
 functio s:Width()
-	let l:width = (&columns - max([&textwidth, 74]) + 1) / 2
-	let s:nuw = min([20, l:width])         " prefer to use numberwidth than foldcolumn
+	let l:width = (&columns - (empty(&textwidth) ? 78 : &textwidth) + 1) / 2
+	let s:nuw = min([l:width, 20])         " prefer to use numberwidth than foldcolumn
 	let s:fdc = min([l:width - s:nuw, 12])
 endfunction
 
@@ -76,7 +75,7 @@ function s:Disable()
 endfunction
 
 function s:Toggle()
-	if get(w:, "margin_enabled")
+	if get(w:, "margin_enabled", 0)
 		NoMargin
 	else
 		LeftMargin
