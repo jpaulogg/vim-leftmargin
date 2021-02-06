@@ -60,7 +60,7 @@ function s:Enable()
 	let w:margin_enabled = 1
 	call s:Width()
 	if &buftype != '' && !exists('w:marginal_backup')    " help buffers and others
-		exec 'let '.'w:marginal_backup = '.s:opts
+		let w:marginal_backup = eval(s:opts)
 	endif
 	exec 'let '.s:opts.' = '.s:values
 endfunction
@@ -75,7 +75,9 @@ function s:Disable()
 endfunction
 
 function s:Toggle()
-	if get(w:, "margin_enabled", 0)
+	if exists('w:margin_enabled')
+		exec w:margin_enabled ? 'NoMargin' : 'LeftMargin'
+	elseif &nuw == get(s:, 'nuw', 20)
 		NoMargin
 	else
 		LeftMargin
