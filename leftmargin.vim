@@ -19,13 +19,10 @@ map <unique> <leader>p <Cmd>call <SID>Toggle()<CR>
 command LeftMargin call s:Enable()
 command NoMargin   call s:Disable()
 
-" autocmds {{{1
-augroup leftmarginColors
+" autocmd
+augroup leftmargin
 	autocmd ColorScheme * call s:Highlight()
 	autocmd OptionSet background,termguicolors call s:Highlight()
-augroup END
-
-augroup leftmarginWidth
 	autocmd OptionSet textwidth if get(w:, 'margin_enabled') | LeftMargin
 augroup END
 
@@ -75,9 +72,7 @@ function s:Disable()
 endfunction
 
 function s:Toggle()
-	if exists('w:margin_enabled')
-		exec w:margin_enabled ? 'NoMargin' : 'LeftMargin'
-	elseif &nuw == get(s:, 'nuw', 20)
+	if &nuw == get(s:, 'nuw', 20)
 		NoMargin
 	else
 		LeftMargin
